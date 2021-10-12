@@ -1,4 +1,6 @@
-package com.cgc.horizon0.account;
+package com.cgc.horizon0.account.integrationtestnative;
+
+import com.cgc.horizon0.account.integrationtest.AccountResourceTest;
 
 import io.quarkus.test.junit.NativeImageTest;
 

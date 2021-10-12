@@ -1,10 +1,10 @@
-package com.cgc.horizon0.account;
+package com.cgc.horizon0.account.integrationtest;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 
 @QuarkusTest
 public class AccountResourceTest {
@@ -12,10 +12,11 @@ public class AccountResourceTest {
     @Test
     public void testHelloEndpoint() {
         given()
-          .when().get("/account")
+          .when().get("/api/accounts")
           .then()
              .statusCode(200)
-             .body(is("Hello RESTEasy"));
+             .body("login_name", equalTo("Ryan Zhang"));
+
     }
 
 }
