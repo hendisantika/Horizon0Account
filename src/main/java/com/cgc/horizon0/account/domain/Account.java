@@ -31,6 +31,9 @@ public class Account extends PanacheEntity{
     public Account() {
     }
 
+    public void interalPolicy(String id){
+        //business Logic
+    }
     private Account(String login_id, String login_name,  AccountType accountType) {
         this.login_id = login_id;
         this.login_name = login_name;

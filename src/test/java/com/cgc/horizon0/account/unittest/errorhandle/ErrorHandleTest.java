@@ -1,4 +1,4 @@
-package com.cgc.horizon0.account.errorhandle;
+package com.cgc.horizon0.account.unittest.errorhandle;
 
 import org.junit.jupiter.api.Test;
 

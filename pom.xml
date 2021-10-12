@@ -119,6 +119,73 @@
   </build>
   <profiles>
     <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <excludes>
+                <exclude>**/integrationtest/**/*.java</exclude>
+                <exclude>**/systemtest/**/*.java</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <QUARKUS_PROFILE>dev</QUARKUS_PROFILE>
+      </properties>
+    </profile>
+    <profile>
+      <id>test</id>
+      <activation />
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <excludes>
+                <exclude>**/systemtest/**/*.java</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <QUARKUS_PROFILE>test</QUARKUS_PROFILE>
+      </properties>
+    </profile>
+    <profile>
+      <id>systemtest</id>
+      <activation />
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <includes>
+                <include>**/systemtest/**/*.java</include>
+              </includes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <QUARKUS_PROFILE>dev</QUARKUS_PROFILE>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.h2database</groupId>
+          <artifactId>h2</artifactId>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
       <id>native</id>
       <activation>
         <property>
