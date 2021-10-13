@@ -1,14 +1,17 @@
 package com.cgc.horizon0.account.domain;
 
+import com.cgc.horizon0.account.domain.enumerate.AccountStatus;
+import com.cgc.horizon0.account.domain.enumerate.AccountType;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.json.bind.annotation.JsonbCreator;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
-import com.cgc.horizon0.account.domain.enumerate.AccountStatus;
-import com.cgc.horizon0.account.domain.enumerate.AccountType;
-
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * We are using active record pattern for OR Mapping
@@ -16,10 +19,15 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
  * If you want to override id, please extends PanacheEntityBase instead of PanacheEntity
  */
 @Entity
-public class Account extends PanacheEntity{
-    
+@Table(name = "account", schema = "account")
+public class Account extends PanacheEntityBase {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+
     public String login_id;
-    
+
     public String login_name;
 
     @Enumerated(EnumType.STRING)
