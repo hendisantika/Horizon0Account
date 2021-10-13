@@ -2,7 +2,7 @@ package com.cgc.horizon0.account.domain;
 
 import com.cgc.horizon0.account.domain.enumerate.AccountStatus;
 import com.cgc.horizon0.account.domain.enumerate.AccountType;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.json.bind.annotation.JsonbCreator;
 import javax.persistence.Entity;
@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -20,9 +21,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "account", schema = "account")
-public class Account extends PanacheEntity {
+public class Account extends PanacheEntityBase {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "accountSequence",
+            sequenceName = "account_id_seq",
+            allocationSize = 1,
+            initialValue = 4)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accountSequence")
     public Long id;
 
     public String loginID;
