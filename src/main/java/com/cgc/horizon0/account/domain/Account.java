@@ -2,7 +2,7 @@ package com.cgc.horizon0.account.domain;
 
 import com.cgc.horizon0.account.domain.enumerate.AccountStatus;
 import com.cgc.horizon0.account.domain.enumerate.AccountType;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.json.bind.annotation.JsonbCreator;
 import javax.persistence.Entity;
@@ -19,10 +19,14 @@ import javax.persistence.Table;
  * If you want to override id, please extends PanacheEntityBase instead of PanacheEntity
  */
 @Entity
-public class Account extends PanacheEntity{
-    
+@Table(name = "account", schema = "account")
+public class Account extends PanacheEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+
     public String loginID;
-    
+
     public String loginName;
 
     @Enumerated(EnumType.STRING)
