@@ -18,9 +18,9 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 public class Account extends PanacheEntity{
     
-    public String login_id;
+    public String loginID;
     
-    public String login_name;
+    public String loginName;
 
     @Enumerated(EnumType.STRING)
     public AccountStatus status;
@@ -34,22 +34,22 @@ public class Account extends PanacheEntity{
     public void interalPolicy(String id){
         //business Logic
     }
-    private Account(String login_id, String login_name,  AccountType accountType) {
-        this.login_id = login_id;
-        this.login_name = login_name;
+    private Account(String loginID, String loginName,  AccountType accountType) {
+        this.loginID = loginID;
+        this.loginName = loginName;
         this.status = AccountStatus.INACTIVATE;
         this.type = accountType;
     }
-    private Account(String login_id, String login_name,AccountStatus status,  AccountType accountType) {
-        this.login_id = login_id;
-        this.login_name = login_name;
+    private Account(String loginID, String loginName,AccountStatus status,  AccountType accountType) {
+        this.loginID = loginID;
+        this.loginName = loginName;
         this.status = status;
         this.type = accountType;
     }
 
     @JsonbCreator
-    public static Account of(String login_id, String login_name,  AccountType accountType){
-        return new Account(login_id, login_name, accountType);
+    public static Account of(String loginID, String loginName,  AccountType accountType){
+        return new Account(loginID, loginName, accountType);
     }
     
 }
