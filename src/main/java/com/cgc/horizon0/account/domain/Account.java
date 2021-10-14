@@ -20,7 +20,8 @@ import javax.persistence.Table;
  * If you want to override id, please extends PanacheEntityBase instead of PanacheEntity
  */
 @Entity
-@Table(name = "account", schema = "account")
+//@Table(name = "account", schema = "account")
+@Table(name = "account")
 public class Account extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
