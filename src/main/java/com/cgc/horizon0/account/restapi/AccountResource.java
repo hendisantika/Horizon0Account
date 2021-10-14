@@ -4,8 +4,6 @@ import com.cgc.horizon0.account.domain.Account;
 import com.cgc.horizon0.account.domain.enumerate.AccountType;
 import com.cgc.horizon0.account.restapi.client.Product;
 import com.cgc.horizon0.account.restapi.client.ProductService;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 
@@ -16,7 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.CompletionStage;
 
 @Path("/api/accounts")
 public class AccountResource {
@@ -40,15 +38,7 @@ public class AccountResource {
 
     @GET
     @Path("/all")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public PanacheQuery<PanacheEntityBase> listAccounts() {
-        log.info("A new Account created!");
-        return Account.findAll();
-    }
-
-    @GET
-    public List<Account> listAccounts2() {
+    public List<Account> listAccounts() {
         return Account.listAll();
     }
 
@@ -61,7 +51,7 @@ public class AccountResource {
 
     @GET
     @Path("/products")
-    public Set<Product> getAllProducts() {
+    public CompletionStage<List<Product>> getAllProducts() {
         return productService.getAllProducts();
     }
 }

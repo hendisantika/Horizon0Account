@@ -4,7 +4,8 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import java.util.Set;
+import java.util.List;
+import java.util.concurrent.CompletionStage;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,9 +16,9 @@ import java.util.Set;
  * Date: 14/10/21
  * Time: 13.55
  */
-@Path("/product")
+@Path("api/v1/products")
 @RegisterRestClient(configKey = "product-api")
 public interface ProductService {
     @GET
-    Set<Product> getAllProducts();
+    CompletionStage<List<Product>> getAllProducts();
 }
